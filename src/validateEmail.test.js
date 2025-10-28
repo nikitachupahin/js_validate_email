@@ -58,6 +58,11 @@ describe(`Function 'validateEmail':`, () => {
       .toBeFalsy();
   });
 
+  it(`should return 'false' when personal_info part ends with .`, () => {
+    expect(validateEmail(`test.@mail.com`))
+      .toBeFalsy();
+  });
+
   it(`should return 'false' when domain part starts with .`, () => {
     expect(validateEmail(`test@.mail.com`))
       .toBeFalsy();
@@ -65,6 +70,11 @@ describe(`Function 'validateEmail':`, () => {
 
   it(`should return 'false' when email fails multiple rules`, () => {
     expect(validateEmail(`false@email`))
+      .toBeFalsy();
+  });
+
+  it(`should return 'false' when email contains more than one @ symbol`, () => {
+    expect(validateEmail(`test@test@mail.com`))
       .toBeFalsy();
   });
 });
